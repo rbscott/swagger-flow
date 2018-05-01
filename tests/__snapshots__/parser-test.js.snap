@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parse enum Should parse a basic enum 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "id": "definitions/basicEnum",
+      "name": "basicEnum",
+      "type": "enum",
+      "values": Array [
+        "value1",
+        "value2",
+        "value3",
+      ],
+    },
+  ],
+  "lookupTable": Array [
+    Array [
+      "definitions/basicEnum",
+      Object {
+        "id": "definitions/basicEnum",
+        "name": "basicEnum",
+        "type": "enum",
+        "values": Array [
+          "value1",
+          "value2",
+          "value3",
+        ],
+      },
+    ],
+  ],
+}
+`;
+
+exports[`parse primitives Should parse a string primitives 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "id": "definitions/basicString",
+      "name": "basicString",
+      "type": "string",
+    },
+  ],
+  "lookupTable": Array [
+    Array [
+      "definitions/basicString",
+      Object {
+        "id": "definitions/basicString",
+        "name": "basicString",
+        "type": "string",
+      },
+    ],
+  ],
+}
+`;
+
+exports[`parse primitives Should parse an boolean primitives 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "id": "definitions/basicBoolean",
+      "name": "basicBoolean",
+      "type": "boolean",
+    },
+  ],
+  "lookupTable": Array [
+    Array [
+      "definitions/basicBoolean",
+      Object {
+        "id": "definitions/basicBoolean",
+        "name": "basicBoolean",
+        "type": "boolean",
+      },
+    ],
+  ],
+}
+`;
+
+exports[`parse primitives Should parse an integer primitives 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "id": "definitions/basicInteger",
+      "name": "basicInteger",
+      "type": "integer",
+    },
+  ],
+  "lookupTable": Array [
+    Array [
+      "definitions/basicInteger",
+      Object {
+        "id": "definitions/basicInteger",
+        "name": "basicInteger",
+        "type": "integer",
+      },
+    ],
+  ],
+}
+`;
+
+exports[`parse primitives Should parse an number primitives 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "id": "definitions/basicNumber",
+      "name": "basicNumber",
+      "type": "integer",
+    },
+  ],
+  "lookupTable": Array [
+    Array [
+      "definitions/basicNumber",
+      Object {
+        "id": "definitions/basicNumber",
+        "name": "basicNumber",
+        "type": "integer",
+      },
+    ],
+  ],
+}
+`;

@@ -31,7 +31,6 @@ export type SwaggerPrimitive = {|
   type: (
     'boolean' |
     'integer' |
-    'null' |
     'string'
   ),
   ...FieldBase,
@@ -49,6 +48,7 @@ export type Schema = {|
   lookupTable: Map<string, Field>,
 |};
 
+// Not sure if this will ever be necessary.
 export type Definition = ({|
   type: 'schema',
   schema: Schema
@@ -56,3 +56,15 @@ export type Definition = ({|
   type: 'field',
   field: Field
 |});
+
+export const PRIMITIVE_TYPE_BOOLEAN = 'boolean';
+export const PRIMITIVE_TYPE_INTEGER = 'integer';
+export const PRIMITIVE_TYPE_NUMBER = 'number';
+export const PRIMITIVE_TYPE_STRING = 'string';
+
+export const PRIMITIVE_TYPES = [
+  PRIMITIVE_TYPE_BOOLEAN,
+  PRIMITIVE_TYPE_INTEGER,
+  PRIMITIVE_TYPE_NUMBER,
+  PRIMITIVE_TYPE_STRING,
+];
