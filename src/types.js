@@ -8,7 +8,8 @@ type FieldBase = {|
 |};
 
 export type SwaggerArray = {|
-  items: Field,
+  items: ?(Field | Array<Field>),
+  additionalItems: ?(boolean | Field),
   type: 'array',
   ...FieldBase,
 |};

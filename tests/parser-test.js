@@ -10,7 +10,7 @@ definitions:
   basicInteger:
     type: integer
 `);
-      expect(parse(input)).toMatchSnapshot();
+      expect(parse(input).items).toMatchSnapshot();
     });
 
     it('Should parse an number primitives', () => {
@@ -19,7 +19,7 @@ definitions:
   basicNumber:
     type: number
 `);
-      expect(parse(input)).toMatchSnapshot();
+      expect(parse(input).items).toMatchSnapshot();
     });
 
     it('Should parse a string primitives', () => {
@@ -28,7 +28,7 @@ definitions:
   basicString:
     type: string
 `);
-      expect(parse(input)).toMatchSnapshot();
+      expect(parse(input).items).toMatchSnapshot();
     });
 
     it('Should parse an boolean primitives', () => {
@@ -37,7 +37,7 @@ definitions:
   basicBoolean:
     type: boolean
 `);
-      expect(parse(input)).toMatchSnapshot();
+      expect(parse(input).items).toMatchSnapshot();
     });
 
   });
@@ -53,7 +53,71 @@ definitions:
       - value2
       - value3
 `);
-      expect(parse(input)).toMatchSnapshot();
+      expect(parse(input).items).toMatchSnapshot();
     });
+  });
+
+  describe('array', () => {
+    it('Should parse a basic array', () => {
+      const input = yaml.safeLoad(`
+definitions:
+  basicArray:
+    type: array
+    items:
+      type: string
+`);
+      expect(parse(input).items).toMatchSnapshot();
+    });
+
+    it('Should parse an additional items boolean', () => {
+      const input = yaml.safeLoad(`
+definitions:
+  basicArray:
+    type: array
+    items:
+      type: string
+    additionalItems: true
+`);
+      expect(parse(input).items).toMatchSnapshot();
+    });
+
+    it('Should parse an additional items boolean (false)', () => {
+      const input = yaml.safeLoad(`
+definitions:
+  basicArray:
+    type: array
+    items:
+      type: string
+    additionalItems: false
+`);
+      expect(parse(input).items).toMatchSnapshot();
+    });
+
+    it('Should parse an additional items schema', () => {
+      const input = yaml.safeLoad(`
+definitions:
+  basicArray:
+    type: array
+    items:
+      type: string
+    additionalItems:
+      type: number
+`);
+      expect(parse(input).items).toMatchSnapshot();
+    });
+
+    it('Should parse arrays of arrays.', () => {
+      const input = yaml.safeLoad(`
+definitions:
+  basicArray:
+    type: array
+    items:
+      type: array
+      items:
+        type: string
+`);
+      expect(parse(input).items).toMatchSnapshot();
+    });
+
   });
 });

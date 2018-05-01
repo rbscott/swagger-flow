@@ -64,8 +64,66 @@ const parseEnum = (name: string, id: string, itemSchema: Object): ?SwaggerEnum =
 };
 
 /**
+ * Parse the schema for an Array. If the definition is not for an Array, parseArray
+ * returns null.
+ *
+ */
+const parseArray = (name: string, id: string, itemSchema: Object): ?SwaggerArray => {
+  if (itemSchema.type !== 'array') {
+    return null;
+  }
+
+  const {
+    additionalItems,
+    items,
+  } = itemSchema;
+
+  const swaggerArray = {
+    additionalItems: undefined,
+    id,
+    items: undefined,
+    name,
+    type: 'array',
+  };
+
+  // For all of these cases, the name and ID will not be displayed since it isn't a root level
+  // definition, but it will be useful for debugging.
+  if (typeof items === 'object') {
+    const itemName = `${name}_ArrayType`;
+    const itemId = `${id}/ArrayType`;
+
+    swaggerArray.items = parseItemSchema(itemName, itemId, items);
+  } else if (Array.isArray(items)) {
+    swaggerArray.items = items.map((item, index) => {
+      const itemName = `${name}_${index}_ArrayType`;
+      const itemId = `${id}/${index}_ArrayType`;
+
+      return parseItemSchema(itemName, itemId, items);
+    });
+  } else {
+    // Could do additional validation, technically the only valid
+    // value for items is an object, and array or undefined.
+  }
+
+  if (typeof additionalItems === 'boolean') {
+    swaggerArray.additionalItems = additionalItems;
+  } else if (typeof additionalItems === 'object') {
+    const itemName = `${name}_AdditionalArrayType`;
+    const itemId = `${id}/AdditionalArrayType`;
+
+    swaggerArray.additionalItems = parseItemSchema(itemName, itemId, additionalItems);
+  } else {
+    // Could do additional validation, technically the only valid
+    // value for additionalItems is a boolean or an object.
+  }
+
+  return swaggerArray;
+};
+
+/**
  * Parse the schema for an individual object. This will validate and then return a field.
- * if there is an error, parseItemSchema throws an exception.
+ * if there is an error, parseItemSchema throws an exception. This handles all of the types
+ * defined in types.js.
  */
 const parseItemSchema = (name: string, id: string, itemSchema: Object): Field => {
   const { type } = itemSchema;
@@ -83,6 +141,9 @@ const parseItemSchema = (name: string, id: string, itemSchema: Object): Field =>
 
   const primitive = parsePrimitive(name, id, itemSchema);
   if (primitive) return primitive;
+
+  const swaggerArray = parseArray(name, id, itemSchema);
+  if (swaggerArray) return swaggerArray;
 
   throw new Error('Not implemented');
 };

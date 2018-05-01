@@ -1,121 +1,146 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`parse enum Should parse a basic enum 1`] = `
-Object {
-  "items": Array [
-    Object {
-      "id": "definitions/basicEnum",
-      "name": "basicEnum",
-      "type": "enum",
-      "values": Array [
-        "value1",
-        "value2",
-        "value3",
-      ],
+exports[`parse array Should parse a basic array 1`] = `
+Array [
+  Object {
+    "additionalItems": undefined,
+    "id": "definitions/basicArray",
+    "items": Object {
+      "id": "definitions/basicArray/ArrayType",
+      "name": "basicArray_ArrayType",
+      "type": "string",
     },
-  ],
-  "lookupTable": Array [
-    Array [
-      "definitions/basicEnum",
-      Object {
-        "id": "definitions/basicEnum",
-        "name": "basicEnum",
-        "type": "enum",
-        "values": Array [
-          "value1",
-          "value2",
-          "value3",
-        ],
+    "name": "basicArray",
+    "type": "array",
+  },
+]
+`;
+
+exports[`parse array Should parse an additional items boolean (false) 1`] = `
+Array [
+  Object {
+    "additionalItems": false,
+    "id": "definitions/basicArray",
+    "items": Object {
+      "id": "definitions/basicArray/ArrayType",
+      "name": "basicArray_ArrayType",
+      "type": "string",
+    },
+    "name": "basicArray",
+    "type": "array",
+  },
+]
+`;
+
+exports[`parse array Should parse an additional items boolean 1`] = `
+Array [
+  Object {
+    "additionalItems": true,
+    "id": "definitions/basicArray",
+    "items": Object {
+      "id": "definitions/basicArray/ArrayType",
+      "name": "basicArray_ArrayType",
+      "type": "string",
+    },
+    "name": "basicArray",
+    "type": "array",
+  },
+]
+`;
+
+exports[`parse array Should parse an additional items schema 1`] = `
+Array [
+  Object {
+    "additionalItems": Object {
+      "id": "definitions/basicArray/AdditionalArrayType",
+      "name": "basicArray_AdditionalArrayType",
+      "type": "integer",
+    },
+    "id": "definitions/basicArray",
+    "items": Object {
+      "id": "definitions/basicArray/ArrayType",
+      "name": "basicArray_ArrayType",
+      "type": "string",
+    },
+    "name": "basicArray",
+    "type": "array",
+  },
+]
+`;
+
+exports[`parse array Should parse arrays of arrays. 1`] = `
+Array [
+  Object {
+    "additionalItems": undefined,
+    "id": "definitions/basicArray",
+    "items": Object {
+      "additionalItems": undefined,
+      "id": "definitions/basicArray/ArrayType",
+      "items": Object {
+        "id": "definitions/basicArray/ArrayType/ArrayType",
+        "name": "basicArray_ArrayType_ArrayType",
+        "type": "string",
       },
+      "name": "basicArray_ArrayType",
+      "type": "array",
+    },
+    "name": "basicArray",
+    "type": "array",
+  },
+]
+`;
+
+exports[`parse enum Should parse a basic enum 1`] = `
+Array [
+  Object {
+    "id": "definitions/basicEnum",
+    "name": "basicEnum",
+    "type": "enum",
+    "values": Array [
+      "value1",
+      "value2",
+      "value3",
     ],
-  ],
-}
+  },
+]
 `;
 
 exports[`parse primitives Should parse a string primitives 1`] = `
-Object {
-  "items": Array [
-    Object {
-      "id": "definitions/basicString",
-      "name": "basicString",
-      "type": "string",
-    },
-  ],
-  "lookupTable": Array [
-    Array [
-      "definitions/basicString",
-      Object {
-        "id": "definitions/basicString",
-        "name": "basicString",
-        "type": "string",
-      },
-    ],
-  ],
-}
+Array [
+  Object {
+    "id": "definitions/basicString",
+    "name": "basicString",
+    "type": "string",
+  },
+]
 `;
 
 exports[`parse primitives Should parse an boolean primitives 1`] = `
-Object {
-  "items": Array [
-    Object {
-      "id": "definitions/basicBoolean",
-      "name": "basicBoolean",
-      "type": "boolean",
-    },
-  ],
-  "lookupTable": Array [
-    Array [
-      "definitions/basicBoolean",
-      Object {
-        "id": "definitions/basicBoolean",
-        "name": "basicBoolean",
-        "type": "boolean",
-      },
-    ],
-  ],
-}
+Array [
+  Object {
+    "id": "definitions/basicBoolean",
+    "name": "basicBoolean",
+    "type": "boolean",
+  },
+]
 `;
 
 exports[`parse primitives Should parse an integer primitives 1`] = `
-Object {
-  "items": Array [
-    Object {
-      "id": "definitions/basicInteger",
-      "name": "basicInteger",
-      "type": "integer",
-    },
-  ],
-  "lookupTable": Array [
-    Array [
-      "definitions/basicInteger",
-      Object {
-        "id": "definitions/basicInteger",
-        "name": "basicInteger",
-        "type": "integer",
-      },
-    ],
-  ],
-}
+Array [
+  Object {
+    "id": "definitions/basicInteger",
+    "name": "basicInteger",
+    "type": "integer",
+  },
+]
 `;
 
 exports[`parse primitives Should parse an number primitives 1`] = `
-Object {
-  "items": Array [
-    Object {
-      "id": "definitions/basicNumber",
-      "name": "basicNumber",
-      "type": "integer",
-    },
-  ],
-  "lookupTable": Array [
-    Array [
-      "definitions/basicNumber",
-      Object {
-        "id": "definitions/basicNumber",
-        "name": "basicNumber",
-        "type": "integer",
-      },
-    ],
-  ],
-}
+Array [
+  Object {
+    "id": "definitions/basicNumber",
+    "name": "basicNumber",
+    "type": "integer",
+  },
+]
 `;
