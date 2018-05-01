@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parse array Should parse a basic array 1`] = `
+Array [
+  Object {
+    "id": "definitions/basicArray",
+    "items": Object {
+      "id": "definitions/basicArray/ArrayType",
+      "name": "basicArray_ArrayType",
+      "type": "string",
+    },
+    "name": "basicArray",
+    "type": "array",
+  },
+]
+`;
+
+exports[`parse array Should parse arrays of arrays. 1`] = `
+Array [
+  Object {
+    "id": "definitions/basicArray",
+    "items": Object {
+      "id": "definitions/basicArray/ArrayType",
+      "items": Object {
+        "id": "definitions/basicArray/ArrayType/ArrayType",
+        "name": "basicArray_ArrayType_ArrayType",
+        "type": "string",
+      },
+      "name": "basicArray_ArrayType",
+      "type": "array",
+    },
+    "name": "basicArray",
+    "type": "array",
+  },
+]
+`;
+
+exports[`parse array Should parse arrays of objects. 1`] = `
+Array [
+  Object {
+    "id": "definitions/basicArray",
+    "items": Object {
+      "fields": Array [
+        Object {
+          "id": "basicArray_ArrayType/Field_field1",
+          "name": "basicArray_ArrayType_Field_field1",
+          "type": "string",
+        },
+      ],
+      "id": "definitions/basicArray/ArrayType",
+      "name": "basicArray_ArrayType",
+      "type": "object",
+    },
+    "name": "basicArray",
+    "type": "array",
+  },
+]
+`;
