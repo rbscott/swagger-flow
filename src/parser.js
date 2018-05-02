@@ -19,6 +19,7 @@ import type {
 
 import parseArray from './parser-array';
 import parseObject from './parser-object';
+import parseComplexType from './parser-complex';
 
 /**
  * Parse the schema for a primitive type. If the definition is not for a primitive type,
@@ -54,7 +55,6 @@ const parseEnum = (name: string, id: string, itemSchema: Object): ?SwaggerEnum =
   }
 
   if (!Array.isArray(enumValues) || enumValues.filter(e => typeof e !== 'string').length > 0) {
-    debugger;
     throw new Error(`Schema item: ${name}, ${id} has a non-string element`);
   }
 
@@ -74,11 +74,14 @@ const parseEnum = (name: string, id: string, itemSchema: Object): ?SwaggerEnum =
 export const parseItemSchema = (name: string, id: string, itemSchema: Object): Field => {
   const { type } = itemSchema;
 
+  // Complex types defined by allOf do not need type qualifiers.
+  const complexType = parseComplexType(name, id, itemSchema);
+  if (complexType) return complexType;
+
   // Type field is required and must be a string.
   // https://tools.ietf.org/html/draft-wright-json-schema-validation-00#section-5.21
   // https://swagger.io/specification/#schemaObject
   if (typeof type !== 'string') {
-    debugger;
     throw new Error(`Schema item: ${name}, ${id} is missing a type`);
   }
 

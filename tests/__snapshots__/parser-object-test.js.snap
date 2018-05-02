@@ -3,15 +3,44 @@
 exports[`parse object Should parse a basic object 1`] = `
 Array [
   Object {
+    "additionalProperties": undefined,
     "fields": Array [
-      Object {
-        "id": "basicObject/Field_field1",
-        "name": "basicObject_Field_field1",
-        "type": "string",
-      },
+      Array [
+        "field1",
+        Object {
+          "id": "definitions/basicObject/Field_field1",
+          "name": "basicObject_Field_field1",
+          "type": "string",
+        },
+      ],
     ],
     "id": "definitions/basicObject",
     "name": "basicObject",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse object Should parse the required field object 1`] = `
+Array [
+  Object {
+    "additionalProperties": undefined,
+    "fields": Array [
+      Array [
+        "field1",
+        Object {
+          "id": "definitions/basicObject/Field_field1",
+          "name": "basicObject_Field_field1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "definitions/basicObject",
+    "name": "basicObject",
+    "required": Array [
+      "field1",
+    ],
     "type": "object",
   },
 ]
