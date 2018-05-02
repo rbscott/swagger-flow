@@ -3,7 +3,7 @@
 exports[`parse enum Should parse a basic enum 1`] = `
 Array [
   Object {
-    "id": "definitions/basicEnum",
+    "id": "#definitions/basicEnum",
     "name": "basicEnum",
     "type": "enum",
     "values": Array [
@@ -18,7 +18,7 @@ Array [
 exports[`parse primitives Should parse a string primitives 1`] = `
 Array [
   Object {
-    "id": "definitions/basicString",
+    "id": "#definitions/basicString",
     "name": "basicString",
     "type": "string",
   },
@@ -28,7 +28,7 @@ Array [
 exports[`parse primitives Should parse an boolean primitives 1`] = `
 Array [
   Object {
-    "id": "definitions/basicBoolean",
+    "id": "#definitions/basicBoolean",
     "name": "basicBoolean",
     "type": "boolean",
   },
@@ -38,7 +38,7 @@ Array [
 exports[`parse primitives Should parse an integer primitives 1`] = `
 Array [
   Object {
-    "id": "definitions/basicInteger",
+    "id": "#definitions/basicInteger",
     "name": "basicInteger",
     "type": "integer",
   },
@@ -48,7 +48,7 @@ Array [
 exports[`parse primitives Should parse an number primitives 1`] = `
 Array [
   Object {
-    "id": "definitions/basicNumber",
+    "id": "#definitions/basicNumber",
     "name": "basicNumber",
     "type": "integer",
   },
@@ -58,7 +58,7 @@ Array [
 exports[`parse reference Should parse a reference 1`] = `
 Array [
   Object {
-    "id": "definitions/basicRef",
+    "id": "#definitions/basicRef",
     "name": "basicRef",
     "ref": "#definitions/anotherType",
     "type": "ref",

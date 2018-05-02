@@ -8,7 +8,7 @@ type FieldBase = {|
 |};
 
 export type SwaggerArray = {|
-  items: ?(Field | Array<Field>),
+  items: ?(Field),
   type: 'array',
   ...FieldBase,
 |};
@@ -70,17 +70,7 @@ export type Field = (
 
 export type Schema = {|
   items: Array<Field>,
-  lookupTable: Map<string, Field>,
 |};
-
-// Not sure if this will ever be necessary.
-export type Definition = ({|
-  type: 'schema',
-  schema: Schema
-|} | {|
-  type: 'field',
-  field: Field
-|});
 
 export const PRIMITIVE_TYPE_BOOLEAN = 'boolean';
 export const PRIMITIVE_TYPE_INTEGER = 'integer';

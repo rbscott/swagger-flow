@@ -123,55 +123,63 @@ export const parseItemSchema = (name: string, id: string, itemSchema: Object): F
  * Parse the definition section of a schema, return an empty array
  * if it is empty.
  */
-const parseDefinitions = (definitionsOpt: ?Object): Array<Field> => {
-  if (!definitionsOpt) {
+const parseSection = (idPrefix: string, sectionOpt: ?Object): Array<Field> => {
+  if (!sectionOpt) {
     return [];
   }
 
-  // Flow doesn't work properly for Object.entries (), and complains
-  const definitions = definitionsOpt;
+  // Flow doesn't work properly for Object.entries, using keys instead,
+  // which requires a refined variable to get name.
+  const section = sectionOpt;
 
-  return Object.keys(definitions).map((name: string) => {
-    const id = `definitions/${name}`;
-    const itemSchema = definitions[name];
+  return Object.keys(section).map((name: string) => {
+    const id = `${idPrefix}/${name}`;
+    const itemSchema = section[name];
 
     if (typeof itemSchema !== 'object') {
       throw new Error(`Invalid entry in definitions: ${name}, ${itemSchema}`);
     }
+
     return parseItemSchema(name, id, itemSchema);
   });
 };
 
 /**
- * Given a list of items, generate a map from the ID of an Item to the field.
+ * Parse the components section of a schema, return an empty array
+ * if it is empty. Components can have a number of different sections
+ * and this should parse all of them, for now it is just starting with
+ * schemas and will ignore the other ones (e.g. responses, parameters,
+ * etc).
  */
-const buildLookupTable = (items: Array<Field>): Map<string, Field> => {
-  const lookupTable = new Map();
+const parseComponents = (schema: Object): Array<Field> => {
+  const { components } = schema;
 
-  items.forEach((item) => {
-    lookupTable.set(item.id, item);
-  });
+  if (typeof components !== 'object') {
+    return [];
+  }
 
-  return lookupTable;
-};
+  const schemas = parseSection('#components/schemas', components.schema);
+
+  return schemas;
+}
 
 /**
  * Parser: Convert a Schema Definition from YAML or JSON into a Schema object
  * This should look for objects in the following locations. Brackets indicate
  * whether it has been implemented.
- *   * [ ] Definitions
+ *   * [x] Definitions
  *   * [ ] Components
  *   * [ ] paths/${url}/${method}/parameters
  *   * [ ] paths/${url}/${method}/responses
  */
-
 const parse = (schema: Object): Schema => {
-  const items = parseDefinitions(schema.definitions);
-  const lookupTable = buildLookupTable(items);
+  const items = [
+    ...parseSection('#definitions', schema.definitions).concat(),
+    ...parseComponents(schema)
+  ];
 
   return {
     items,
-    lookupTable,
   }
 };
 
