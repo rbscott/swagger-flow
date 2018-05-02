@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generateDeclaration allOf Should build an allOf declaration with multiple objects. 1`] = `"{ ...{ field1: ?boolean }, ...{ field2: ?boolean } }"`;
+
+exports[`generateDeclaration allOf Should build an allOf declaration with references. 1`] = `"{ ...Count1, ...Count2 }"`;
+
+exports[`generateDeclaration allOf Should build an allOf declaration. 1`] = `"{ ...{ field1: ?boolean } }"`;
+
+exports[`generateDeclaration anyOf Should build an anyOf declaration with multiple objects. 1`] = `"( { field1: ?boolean } | { field2: ?boolean } )"`;
+
+exports[`generateDeclaration anyOf Should build an anyOf declaration with references. 1`] = `"( Count1 | Count2 )"`;
+
+exports[`generateDeclaration anyOf Should build an anyOf declaration. 1`] = `"( { field1: ?boolean } )"`;
+
+exports[`generateDeclaration oneOf Should build an oneOf declaration with multiple objects. 1`] = `"( { field1: ?boolean } | { field2: ?boolean } )"`;
+
+exports[`generateDeclaration oneOf Should build an oneOf declaration with references. 1`] = `"( Count1 | Count2 )"`;
+
+exports[`generateDeclaration oneOf Should build an oneOf declaration. 1`] = `"( { field1: ?boolean } )"`;

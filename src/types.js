@@ -20,8 +20,8 @@ export type SwaggerArray = {|
 // multiple schemas.
 export type SwaggerComplexType = {|
   choices: Array<Field>,
-  type: ('anyOf' | 'allOf' | 'oneOf'),
   required: Array<string>,
+  type: ('anyOf' | 'allOf' | 'oneOf'),
   ...FieldBase,
 |};
 
