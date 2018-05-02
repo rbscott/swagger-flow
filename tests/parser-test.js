@@ -56,4 +56,16 @@ definitions:
       expect(parse(input).items).toMatchSnapshot();
     });
   });
+
+  describe('reference', () => {
+    it('Should parse a reference', () => {
+      const input = yaml.safeLoad(`
+definitions:
+  basicRef:
+    $ref: '#definitions/anotherType'
+`);
+      expect(parse(input).items).toMatchSnapshot();
+    });
+
+  });
 });

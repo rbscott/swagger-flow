@@ -8,13 +8,13 @@ import {
 } from './types';
 
 import type {
-  Definition,
   Field,
   Schema,
   SwaggerArray,
   SwaggerEnum,
   SwaggerObject,
   SwaggerPrimitive,
+  SwaggerReference,
 } from './types';
 
 import parseArray from './parser-array';
@@ -66,6 +66,21 @@ const parseEnum = (name: string, id: string, itemSchema: Object): ?SwaggerEnum =
   };
 };
 
+const parseReference = (name: string, id: string, itemSchema: Object): ?SwaggerReference => {
+  const ref = itemSchema['$ref'];
+
+  if (typeof ref !== 'string') {
+    return null;
+  }
+
+  return {
+    id,
+    name,
+    ref,
+    type: 'ref',
+  };
+};
+
 /**
  * Parse the schema for an individual object. This will validate and then return a field.
  * if there is an error, parseItemSchema throws an exception. This handles all of the types
@@ -73,6 +88,10 @@ const parseEnum = (name: string, id: string, itemSchema: Object): ?SwaggerEnum =
  */
 export const parseItemSchema = (name: string, id: string, itemSchema: Object): Field => {
   const { type } = itemSchema;
+
+  // References are the most basic type and don't require any other fields.
+  const ref = parseReference(name, id, itemSchema);
+  if (ref) return ref;
 
   // Complex types defined by allOf do not need type qualifiers.
   const complexType = parseComplexType(name, id, itemSchema);

@@ -94,6 +94,42 @@ Array [
 ]
 `;
 
+exports[`parse complexType Should parse a few complex types with a ref 1`] = `
+Array [
+  Object {
+    "choices": Array [
+      Object {
+        "additionalProperties": undefined,
+        "fields": Array [
+          Array [
+            "field1",
+            Object {
+              "id": "definitions/complexType/SubType_0/Field_field1",
+              "name": "complexType_SubType_0_Field_field1",
+              "type": "string",
+            },
+          ],
+        ],
+        "id": "definitions/complexType/SubType_0",
+        "name": "complexType_SubType_0",
+        "required": Array [],
+        "type": "object",
+      },
+      Object {
+        "id": "definitions/complexType/SubType_1",
+        "name": "complexType_SubType_1",
+        "ref": "#definitions/otherType",
+        "type": "ref",
+      },
+    ],
+    "id": "definitions/complexType",
+    "name": "complexType",
+    "required": Array [],
+    "type": "allOf",
+  },
+]
+`;
+
 exports[`parse complexType Should parse a few complex types with required fields 1`] = `
 Array [
   Object {

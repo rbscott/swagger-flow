@@ -13,6 +13,18 @@ export type SwaggerArray = {|
   ...FieldBase,
 |};
 
+// allOf is similar to the insection type in Flow.
+// anyOf is similar to the union type in Flow.
+// oneOf is similar to the union type in Flow. It isn't exactly the
+// same thing because oneOf must match exactly one schema and not
+// multiple schemas.
+export type SwaggerComplexType = {|
+  choices: Array<Field>,
+  type: ('anyOf' | 'allOf' | 'oneOf'),
+  required: Array<string>,
+  ...FieldBase,
+|};
+
 export type SwaggerEnum = {|
   values: Array<string>,
   type: 'enum',
@@ -27,18 +39,6 @@ export type SwaggerObject = {|
   ...FieldBase,
 |};
 
-// allOf is similar to the insection type in Flow.
-// anyOf is similar to the union type in Flow.
-// oneOf is similar to the union type in Flow. It isn't exactly the
-// same thing because oneOf must match exactly one schema and not
-// multiple schemas.
-export type SwaggerComplexType = {|
-  choices: Array<Field>,
-  type: ('anyOf' | 'allOf' | 'oneOf'),
-  required: Array<string>,
-  ...FieldBase,
-|};
-
 export type SwaggerPrimitive = {|
   // There are some refinements that could happen here such as regular expressions,
   // etc, but for now just keep it simple.
@@ -50,12 +50,22 @@ export type SwaggerPrimitive = {|
   ...FieldBase,
 |};
 
+export type SwaggerReference = {|
+  // There are some refinements that could happen here such as regular expressions,
+  // etc, but for now just keep it simple.
+  type: 'ref',
+  ref: string,
+  ...FieldBase,
+|};
+
+
 export type Field = (
   SwaggerArray |
   SwaggerComplexType |
   SwaggerEnum |
   SwaggerObject |
-  SwaggerPrimitive
+  SwaggerPrimitive |
+  SwaggerReference
 );
 
 export type Schema = {|

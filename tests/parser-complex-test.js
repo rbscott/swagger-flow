@@ -46,6 +46,20 @@ definitions:
       expect(parse(input).items).toMatchSnapshot();
     });
 
+    it('Should parse a few complex types with a ref', () => {
+      const input = yaml.safeLoad(`
+definitions:
+  complexType:
+    allOf:
+    - type: object
+      properties:
+        field1:
+          type: string
+    - $ref: '#definitions/otherType'
+`);
+      expect(parse(input).items).toMatchSnapshot();
+    });
+
 
   });
 });

@@ -54,3 +54,14 @@ Array [
   },
 ]
 `;
+
+exports[`parse reference Should parse a reference 1`] = `
+Array [
+  Object {
+    "id": "definitions/basicRef",
+    "name": "basicRef",
+    "ref": "#definitions/anotherType",
+    "type": "ref",
+  },
+]
+`;
