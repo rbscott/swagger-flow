@@ -30,4 +30,4 @@ exports[`generateDeclaration primitives Should build a declaration for a string 
 
 exports[`generateDeclaration ref Should build a declaration for a ref. 1`] = `"Count"`;
 
-exports[`generateDeclaration ref Should use "mixed" if the ref doesn't exist. 1`] = `"/* the ref: '#definitions/Missing' is missing, defaulting to mixed */ mixed"`;
+exports[`generateDeclaration ref Should use "mixed" if the ref doesn't exist. 1`] = `"/* the ref: '#/definitions/Missing' is missing, defaulting to mixed */ mixed"`;

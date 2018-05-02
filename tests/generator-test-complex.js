@@ -26,7 +26,7 @@ describe('generateDeclaration', () => {
         const objectField = {
           additionalProperties: false,
           fields: objectFields,
-          id: '#definitions/Object',
+          id: '#/definitions/Object',
           name: 'Object',
           required: [],
           type: 'object',
@@ -34,7 +34,7 @@ describe('generateDeclaration', () => {
 
         const field = {
           choices: [objectField],
-          id: `#definitions/${name}`,
+          id: `#/definitions/${name}`,
           name,
           required: [],
           type,
@@ -55,7 +55,7 @@ describe('generateDeclaration', () => {
         const object1Field = {
           additionalProperties: false,
           fields: object1Fields,
-          id: '#definitions/Object1',
+          id: '#/definitions/Object1',
           name: 'Object1',
           required: [],
           type: 'object',
@@ -72,7 +72,7 @@ describe('generateDeclaration', () => {
         const object2Field = {
           additionalProperties: false,
           fields: object2Fields,
-          id: '#definitions/Object2',
+          id: '#/definitions/Object2',
           name: 'Object2',
           required: [],
           type: 'object',
@@ -81,7 +81,7 @@ describe('generateDeclaration', () => {
 
         const field = {
           choices: [object1Field, object2Field],
-          id: `#definitions/${name}`,
+          id: `#/definitions/${name}`,
           name,
           required: [],
           type,
@@ -93,13 +93,13 @@ describe('generateDeclaration', () => {
       it(`Should build an ${type} declaration with references.`, () => {
         const lookupTable = new Map(Object.entries({
           // It doesn't matter what the references are for this test.
-          '#definitions/Count1': {
-            id: '#definitions/Count1',
+          '#/definitions/Count1': {
+            id: '#/definitions/Count1',
             name: 'Count1',
             type: 'integer'
           },
-          '#definitions/Count2': {
-            id: '#definitions/Count2',
+          '#/definitions/Count2': {
+            id: '#/definitions/Count2',
             name: 'Count2',
             type: 'integer'
           },
@@ -108,20 +108,20 @@ describe('generateDeclaration', () => {
         const ref1Field = {
           id: 'unused',
           name: 'unused',
-          ref: '#definitions/Count1',
+          ref: '#/definitions/Count1',
           type: 'ref',
         };
 
         const ref2Field = {
           id: 'unused',
           name: 'unused',
-          ref: '#definitions/Count2',
+          ref: '#/definitions/Count2',
           type: 'ref',
         };
 
         const field = {
           choices: [ref1Field, ref2Field],
-          id: `#definitions/${name}`,
+          id: `#/definitions/${name}`,
           name,
           required: [],
           type,

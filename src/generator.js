@@ -136,8 +136,11 @@ const generateFlowTypes = (schema: Schema, config: Config): string => {
   const lookupTable = buildLookupTable(schema.items);
 
   return schema.items.reduce((accum, item) => {
-    return accum.concat(generateItem(item, lookupTable, config));
-  }, '');
+    const declaration = generateDeclaration(item, lookupTable, config);
+
+    return accum.concat(`export type ${item.name} = ${declaration};`);
+  }, [])
+  .join('\n\n');
 };
 
 export default generateFlowTypes;

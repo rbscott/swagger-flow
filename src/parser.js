@@ -158,7 +158,7 @@ const parseComponents = (schema: Object): Array<Field> => {
     return [];
   }
 
-  const schemas = parseSection('#components/schemas', components.schema);
+  const schemas = parseSection('#/components/schemas', components.schema);
 
   return schemas;
 }
@@ -174,7 +174,7 @@ const parseComponents = (schema: Object): Array<Field> => {
  */
 const parse = (schema: Object): Schema => {
   const items = [
-    ...parseSection('#definitions', schema.definitions).concat(),
+    ...parseSection('#/definitions', schema.definitions).concat(),
     ...parseComponents(schema)
   ];
 

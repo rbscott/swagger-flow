@@ -13,7 +13,7 @@ describe('generateDeclaration', () => {
   describe('array', () => {
     it(`Should build an array declaration.`, () => {
       const field = {
-        id: '#definitions/Array',
+        id: '#/definitions/Array',
         items: {
           id: 'unused',
           name: 'unused',
@@ -28,7 +28,7 @@ describe('generateDeclaration', () => {
 
     it(`Should use mixed if items is undefined.`, () => {
       const field = {
-        id: '#definitions/Array',
+        id: '#/definitions/Array',
         items: undefined,
         name: 'Array',
         type: 'array',
@@ -39,19 +39,19 @@ describe('generateDeclaration', () => {
 
     it(`Should build an array declaration with a reference type.`, () => {
       const lookupTable = new Map(Object.entries({
-        '#definitions/Count': {
-          id: '#definitions/Count',
+        '#/definitions/Count': {
+          id: '#/definitions/Count',
           name: 'Count',
           type: 'integer'
         },
       }));
 
       const field = {
-        id: '#definitions/Array',
+        id: '#/definitions/Array',
         items: {
           id: 'unused',
           name: 'unused',
-          ref: '#definitions/Count',
+          ref: '#/definitions/Count',
           type: 'ref',
         },
         name: 'Array',
@@ -70,7 +70,7 @@ describe('generateDeclaration', () => {
   describe('enum', () => {
     it(`Should build a basic declaration for an enum.`, () => {
       const field = {
-        id: '#definitions/Enum',
+        id: '#/definitions/Enum',
         name: 'Enum',
         type: 'enum',
         values: ['value1', 'value2', 'value3'],
@@ -81,7 +81,7 @@ describe('generateDeclaration', () => {
 
     it(`Should sort the enum values.`, () => {
       const field = {
-        id: '#definitions/Enum',
+        id: '#/definitions/Enum',
         name: 'Enum',
         type: 'enum',
         values: ['red', 'green', 'blue'],
@@ -108,7 +108,7 @@ describe('generateDeclaration', () => {
       const field = {
         additionalProperties: false,
         fields: fields,
-        id: '#definitions/Object',
+        id: '#/definitions/Object',
         name: 'Object',
         required: [],
         type: 'object',
@@ -129,7 +129,7 @@ describe('generateDeclaration', () => {
       const field = {
         additionalProperties: false,
         fields: fields,
-        id: '#definitions/Object',
+        id: '#/definitions/Object',
         name: 'Object',
         required: [],
         type: 'object',
@@ -150,7 +150,7 @@ describe('generateDeclaration', () => {
       const field = {
         additionalProperties: true,
         fields: fields,
-        id: '#definitions/Object',
+        id: '#/definitions/Object',
         name: 'Object',
         required: [],
         type: 'object',
@@ -176,7 +176,7 @@ describe('generateDeclaration', () => {
       const field = {
         additionalProperties: false,
         fields: fields,
-        id: '#definitions/Object',
+        id: '#/definitions/Object',
         name: 'Object',
         required: [],
         type: 'object',
@@ -201,7 +201,7 @@ describe('generateDeclaration', () => {
               type: 'string',
             },
           })),
-          id: '#definitions/Object',
+          id: '#/definitions/Object',
           name: 'Object',
           required: [],
           type: 'object',
@@ -211,7 +211,7 @@ describe('generateDeclaration', () => {
       const field = {
         additionalProperties: false,
         fields: fields,
-        id: '#definitions/Object',
+        id: '#/definitions/Object',
         name: 'Object',
         required: [],
         type: 'object',
@@ -230,7 +230,7 @@ describe('generateDeclaration', () => {
     PRIMITIVE_TYPES.forEach((type) => {
       it(`Should build a declaration for a ${type} primitive`, () => {
         const field = {
-          id: '#definitions/Primitive',
+          id: '#/definitions/Primitive',
           name: 'Primitive',
           type,
         };
@@ -247,17 +247,17 @@ describe('generateDeclaration', () => {
   describe('ref', () => {
     it(`Should build a declaration for a ref.`, () => {
       const lookupTable = new Map(Object.entries({
-        '#definitions/Count': {
-          id: '#definitions/Count',
+        '#/definitions/Count': {
+          id: '#/definitions/Count',
           name: 'Count',
           type: 'integer'
         },
       }));
 
       const field = {
-        id: '#definitions/Ref',
+        id: '#/definitions/Ref',
         name: 'Ref',
-        ref: '#definitions/Count',
+        ref: '#/definitions/Count',
         type: 'ref',
       };
 
@@ -266,9 +266,9 @@ describe('generateDeclaration', () => {
 
     it(`Should use "mixed" if the ref doesn't exist.`, () => {
       const field = {
-        id: '#definitions/Ref',
+        id: '#/definitions/Ref',
         name: 'Ref',
-        ref: '#definitions/Missing',
+        ref: '#/definitions/Missing',
         type: 'ref',
       };
 

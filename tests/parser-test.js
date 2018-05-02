@@ -62,7 +62,7 @@ definitions:
       const input = yaml.safeLoad(`
 definitions:
   basicRef:
-    $ref: '#definitions/anotherType'
+    $ref: '#/definitions/anotherType'
 `);
       expect(parse(input).items).toMatchSnapshot();
     });

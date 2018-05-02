@@ -3,9 +3,9 @@
 exports[`parse array Should parse a basic array 1`] = `
 Array [
   Object {
-    "id": "#definitions/basicArray",
+    "id": "#/definitions/basicArray",
     "items": Object {
-      "id": "#definitions/basicArray/ArrayType",
+      "id": "#/definitions/basicArray/ArrayType",
       "name": "basicArray_ArrayType",
       "type": "string",
     },
@@ -18,11 +18,11 @@ Array [
 exports[`parse array Should parse arrays of arrays. 1`] = `
 Array [
   Object {
-    "id": "#definitions/basicArray",
+    "id": "#/definitions/basicArray",
     "items": Object {
-      "id": "#definitions/basicArray/ArrayType",
+      "id": "#/definitions/basicArray/ArrayType",
       "items": Object {
-        "id": "#definitions/basicArray/ArrayType/ArrayType",
+        "id": "#/definitions/basicArray/ArrayType/ArrayType",
         "name": "basicArray_ArrayType_ArrayType",
         "type": "string",
       },
@@ -38,20 +38,20 @@ Array [
 exports[`parse array Should parse arrays of objects. 1`] = `
 Array [
   Object {
-    "id": "#definitions/basicArray",
+    "id": "#/definitions/basicArray",
     "items": Object {
       "additionalProperties": undefined,
       "fields": Array [
         Array [
           "field1",
           Object {
-            "id": "#definitions/basicArray/ArrayType/Field_field1",
+            "id": "#/definitions/basicArray/ArrayType/Field_field1",
             "name": "basicArray_ArrayType_Field_field1",
             "type": "string",
           },
         ],
       ],
-      "id": "#definitions/basicArray/ArrayType",
+      "id": "#/definitions/basicArray/ArrayType",
       "name": "basicArray_ArrayType",
       "required": Array [],
       "type": "object",
