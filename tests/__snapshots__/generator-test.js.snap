@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generateDeclaration array Should build an array declaration with a reference type. 1`] = `"Array<Count>"`;
+
+exports[`generateDeclaration array Should build an array declaration. 1`] = `"Array<boolean>"`;
+
+exports[`generateDeclaration array Should use mixed if items is undefined. 1`] = `"Array<mixed>"`;
+
+exports[`generateDeclaration enum Should build a basic declaration for an enum. 1`] = `"(\\"value1\\" | \\"value2\\" | \\"value3\\")"`;
+
+exports[`generateDeclaration enum Should sort the enum values. 1`] = `"(\\"blue\\" | \\"green\\" | \\"red\\")"`;
+
+exports[`generateDeclaration object Should build a basic object declaration. 1`] = `"{ field1: ?boolean }"`;
+
+exports[`generateDeclaration object Should build a basic object with multiple fields declaration. 1`] = `"{ field1: ?boolean, field2: ?boolean }"`;
+
+exports[`generateDeclaration object Should build a loose object declaration if additionalProperties is set. 1`] = `"{ field1: ?boolean }"`;
+
+exports[`generateDeclaration object Should build a nested object with multiple fields declaration. 1`] = `"{ field1: ?boolean, field2: ?{ nestedField1: ?string } }"`;
+
+exports[`generateDeclaration object Should build an exact object declaration. 1`] = `"{| field1: ?boolean |}"`;
+
+exports[`generateDeclaration primitives Should build a declaration for a boolean primitive 1`] = `"boolean"`;
+
+exports[`generateDeclaration primitives Should build a declaration for a integer primitive 1`] = `"number"`;
+
+exports[`generateDeclaration primitives Should build a declaration for a number primitive 1`] = `"number"`;
+
+exports[`generateDeclaration primitives Should build a declaration for a string primitive 1`] = `"string"`;
+
+exports[`generateDeclaration ref Should build a declaration for a ref. 1`] = `"Count"`;
+
+exports[`generateDeclaration ref Should use "mixed" if the ref doesn't exist. 1`] = `"/* the ref: '#definitions/Missing' is missing, defaulting to mixed */ mixed"`;
