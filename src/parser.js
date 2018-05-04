@@ -18,8 +18,9 @@ import type {
 } from './types';
 
 import parseArray from './parser-array';
-import parseObject from './parser-object';
 import parseComplexType from './parser-complex';
+import parseObject from './parser-object';
+import parseParameters from './parser-request';
 
 /**
  * Parse the schema for a primitive type. If the definition is not for a primitive type,
@@ -161,7 +162,7 @@ const parseComponents = (schema: Object): Array<Field> => {
   const schemas = parseSection('#/components/schemas', components.schema);
 
   return schemas;
-}
+};
 
 /**
  * Parser: Convert a Schema Definition from YAML or JSON into a Schema object
@@ -175,7 +176,8 @@ const parseComponents = (schema: Object): Array<Field> => {
 const parse = (schema: Object): Schema => {
   const items = [
     ...parseSection('#/definitions', schema.definitions).concat(),
-    ...parseComponents(schema)
+    ...parseComponents(schema),
+    ...parseParameters(schema),
   ];
 
   return {

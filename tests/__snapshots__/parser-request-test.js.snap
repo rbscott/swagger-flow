@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parse parameters Should inherit properly 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "sameParam",
+        Object {
+          "id": "#/simple/test/sameParam",
+          "name": "TSimpleTestGet_Field_sameParam",
+          "type": "integer",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "TSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should parse a basic parameter 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "param1",
+        Object {
+          "id": "#/simple/test/param1",
+          "name": "TSimpleTestGet_Field_param1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "TSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should parse global parameters 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "globalParam1",
+        Object {
+          "id": "#/parameters/globalParam1",
+          "name": "parameters_Field_globalParam1",
+          "type": "string",
+        },
+      ],
+      Array [
+        "param1",
+        Object {
+          "id": "#/simple/test/param1",
+          "name": "TSimpleTestGet_Field_param1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "TSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should parse multiple parameters 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "param1",
+        Object {
+          "id": "#/simple/test/param1",
+          "name": "TSimpleTestGet_Field_param1",
+          "type": "string",
+        },
+      ],
+      Array [
+        "param2",
+        Object {
+          "id": "#/simple/test/param2",
+          "name": "TSimpleTestGet_Field_param2",
+          "type": "boolean",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "TSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should parse path parameters 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "pathParam1",
+        Object {
+          "id": "#/simple/test/pathParam1",
+          "name": "TSimpleTest/_Field_pathParam1",
+          "type": "string",
+        },
+      ],
+      Array [
+        "param1",
+        Object {
+          "id": "#/simple/test/param1",
+          "name": "TSimpleTestGet_Field_param1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "TSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
