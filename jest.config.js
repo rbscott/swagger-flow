@@ -2,5 +2,5 @@ module.exports = {
   automock: false,
   testPathIgnorePatterns: ['node_modules'],
   setupFiles: ['babel-polyfill'],
-  testMatch: ['**/tests/**/*.js'],
+  testMatch: ['**/tests/**/*test*.js'],
 };

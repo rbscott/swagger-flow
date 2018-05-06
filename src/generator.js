@@ -17,7 +17,7 @@ import type {
 
 type LookupTable = Map<string, Field>;
 
-type Config = {|
+export type GeneratorConfig = {|
   // Set to true to never use exact class definitions.
   openClasses: boolean,
 |};
@@ -30,7 +30,7 @@ type Config = {|
 export const generateDeclaration = (
   field: Field,
   lookupTable: LookupTable,
-  config: Config,
+  config: GeneratorConfig,
 ): string => {
   const { type, } = field;
 
@@ -132,7 +132,7 @@ const buildLookupTable = (items: Array<Field>): LookupTable => {
   return lookupTable;
 };
 
-const generateFlowTypes = (schema: Schema, config: Config): string => {
+const generateFlowTypes = (schema: Schema, config: GeneratorConfig): string => {
   const lookupTable = buildLookupTable(schema.items);
 
   return schema.items.reduce((accum, item) => {

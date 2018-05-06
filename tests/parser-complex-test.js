@@ -1,6 +1,7 @@
 import yaml from 'js-yaml';
 
 import parse from '../src/parser';
+import { DEFAULT_PARSER_CONFIG } from './constants';
 
 describe('parse', () => {
   const types = ['allOf', 'anyOf', 'oneOf'];
@@ -22,7 +23,7 @@ describe('parse', () => {
           field2:
             type: string
   `);
-        expect(parse(input).items).toMatchSnapshot();
+        expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
       });
     });
 
@@ -43,7 +44,7 @@ definitions:
       - field1
       - field2
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
 
     it('Should parse a few complex types with a ref', () => {
@@ -57,7 +58,7 @@ definitions:
           type: string
     - $ref: '#/definitions/otherType'
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
 
 

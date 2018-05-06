@@ -1,6 +1,7 @@
 import yaml from 'js-yaml';
 
 import parse from '../src/parser';
+import { DEFAULT_PARSER_CONFIG } from './constants';
 
 describe('parse', () => {
   describe('primitives', () => {
@@ -10,7 +11,7 @@ definitions:
   basicInteger:
     type: integer
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
 
     it('Should parse an number primitives', () => {
@@ -19,7 +20,7 @@ definitions:
   basicNumber:
     type: number
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
 
     it('Should parse a string primitives', () => {
@@ -28,7 +29,7 @@ definitions:
   basicString:
     type: string
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
 
     it('Should parse an boolean primitives', () => {
@@ -37,7 +38,7 @@ definitions:
   basicBoolean:
     type: boolean
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
 
   });
@@ -53,7 +54,7 @@ definitions:
       - value2
       - value3
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
   });
 
@@ -64,7 +65,7 @@ definitions:
   basicRef:
     $ref: '#/definitions/anotherType'
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
 
   });

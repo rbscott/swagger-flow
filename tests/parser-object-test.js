@@ -1,6 +1,7 @@
 import yaml from 'js-yaml';
 
 import parse from '../src/parser';
+import { DEFAULT_PARSER_CONFIG } from './constants';
 
 describe('parse', () => {
   describe('object', () => {
@@ -13,7 +14,7 @@ definitions:
       field1:
         type: string
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
 
     it('Should parse the required field object', () => {
@@ -27,7 +28,7 @@ definitions:
     required:
       - field1
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
 
   });

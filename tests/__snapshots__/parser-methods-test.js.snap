@@ -1,0 +1,449 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parse parameters Should inherit properly 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "sameParam",
+        Object {
+          "id": "#/simple/test/get/sameParam",
+          "name": "RqstSimpleTestGet_Field_sameParam",
+          "type": "integer",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "RqstSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should inline body if requested. 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "body",
+        Object {
+          "id": "#/simple/test/get/body",
+          "name": "RqstSimpleTestGet_Field_body",
+          "type": "integer",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "RqstSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should inline the body with a rich schema. 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "body",
+        Object {
+          "additionalProperties": undefined,
+          "fields": Array [
+            Array [
+              "0",
+              Object {
+                "id": "#/simple/test/get/body/Field_0",
+                "name": "RqstSimpleTestGet_Field_body_Field_0",
+                "type": "string",
+              },
+            ],
+          ],
+          "id": "#/simple/test/get/body",
+          "name": "RqstSimpleTestGet_Field_body",
+          "required": Array [],
+          "type": "object",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "RqstSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should parse a basic parameter 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "param1",
+        Object {
+          "id": "#/simple/test/get/param1",
+          "name": "RqstSimpleTestGet_Field_param1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "RqstSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should parse global parameters 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "globalParam1",
+        Object {
+          "id": "#/parameters/globalParam1",
+          "name": "parameters_Field_globalParam1",
+          "type": "string",
+        },
+      ],
+      Array [
+        "param1",
+        Object {
+          "id": "#/simple/test/get/param1",
+          "name": "RqstSimpleTestGet_Field_param1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "RqstSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should parse multiple parameters 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "param1",
+        Object {
+          "id": "#/simple/test/get/param1",
+          "name": "RqstSimpleTestGet_Field_param1",
+          "type": "string",
+        },
+      ],
+      Array [
+        "param2",
+        Object {
+          "id": "#/simple/test/get/param2",
+          "name": "RqstSimpleTestGet_Field_param2",
+          "type": "boolean",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "RqstSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should parse path parameters 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "pathParam1",
+        Object {
+          "id": "#/simple/test/pathParam1",
+          "name": "SimpleTest/_Field_pathParam1",
+          "type": "string",
+        },
+      ],
+      Array [
+        "param1",
+        Object {
+          "id": "#/simple/test/get/param1",
+          "name": "RqstSimpleTestGet_Field_param1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "RqstSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should split out the body if requested. 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [],
+    "id": "#/simple/test/get",
+    "name": "RqstSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+  Object {
+    "id": "#/simple/test/get/body",
+    "name": "RqstSimpleTestGetBody",
+    "type": "integer",
+  },
+]
+`;
+
+exports[`parse parameters Should split out the body with a rich schema. 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [],
+    "id": "#/simple/test/get",
+    "name": "RqstSimpleTestGet",
+    "required": Array [],
+    "type": "object",
+  },
+  Object {
+    "additionalProperties": undefined,
+    "fields": Array [
+      Array [
+        "0",
+        Object {
+          "id": "#/simple/test/get/body/Field_0",
+          "name": "RqstSimpleTestGetBody_Field_0",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get/body",
+    "name": "RqstSimpleTestGetBody",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should use the operationId with a method controller 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "sameParam",
+        Object {
+          "id": "#/simple/test/get/sameParam",
+          "name": "RqstMethodOperation_Field_sameParam",
+          "type": "integer",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "RqstMethodOperation",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should use the operationId with a path controller 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "sameParam",
+        Object {
+          "id": "#/simple/test/get/sameParam",
+          "name": "RqstControllerOperation_Field_sameParam",
+          "type": "integer",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "RqstControllerOperation",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse parameters Should use the operationId without a controller 1`] = `
+Array [
+  Object {
+    "additionalProperties": false,
+    "fields": Array [
+      Array [
+        "sameParam",
+        Object {
+          "id": "#/simple/test/get/sameParam",
+          "name": "RqstOperation_Field_sameParam",
+          "type": "integer",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get",
+    "name": "RqstOperation",
+    "required": Array [],
+    "type": "object",
+  },
+]
+`;
+
+exports[`parse response Should parse a basic response 1`] = `
+Array [
+  Object {
+    "additionalProperties": undefined,
+    "fields": Array [
+      Array [
+        "resp1",
+        Object {
+          "id": "#/simple/test/get/200/Field_resp1",
+          "name": "RespSimpleTestGet200_Field_resp1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get/200",
+    "name": "RespSimpleTestGet200",
+    "required": Array [],
+    "type": "object",
+  },
+  Object {
+    "choices": Array [
+      Object {
+        "id": "/simple/test/choices/RespSimpleTestGet200",
+        "name": "RespSimpleTestGet_Ref_RespSimpleTestGet200",
+        "ref": "#/simple/test/get/200",
+        "type": "ref",
+      },
+    ],
+    "id": "#/simple/test/get",
+    "name": "RespSimpleTestGet",
+    "required": Array [],
+    "type": "anyOf",
+  },
+]
+`;
+
+exports[`parse response Should parse an operationId with a method controller 1`] = `
+Array [
+  Object {
+    "additionalProperties": undefined,
+    "fields": Array [
+      Array [
+        "resp1",
+        Object {
+          "id": "#/simple/test/get/200/Field_resp1",
+          "name": "RespMethodOperation200_Field_resp1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get/200",
+    "name": "RespMethodOperation200",
+    "required": Array [],
+    "type": "object",
+  },
+  Object {
+    "choices": Array [
+      Object {
+        "id": "/simple/test/choices/RespMethodOperation200",
+        "name": "RespMethodOperation_Ref_RespMethodOperation200",
+        "ref": "#/simple/test/get/200",
+        "type": "ref",
+      },
+    ],
+    "id": "#/simple/test/get",
+    "name": "RespMethodOperation",
+    "required": Array [],
+    "type": "anyOf",
+  },
+]
+`;
+
+exports[`parse response Should parse an operationId with a path controller 1`] = `
+Array [
+  Object {
+    "additionalProperties": undefined,
+    "fields": Array [
+      Array [
+        "resp1",
+        Object {
+          "id": "#/simple/test/get/200/Field_resp1",
+          "name": "RespControllerOperation200_Field_resp1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get/200",
+    "name": "RespControllerOperation200",
+    "required": Array [],
+    "type": "object",
+  },
+  Object {
+    "choices": Array [
+      Object {
+        "id": "/simple/test/choices/RespControllerOperation200",
+        "name": "RespControllerOperation_Ref_RespControllerOperation200",
+        "ref": "#/simple/test/get/200",
+        "type": "ref",
+      },
+    ],
+    "id": "#/simple/test/get",
+    "name": "RespControllerOperation",
+    "required": Array [],
+    "type": "anyOf",
+  },
+]
+`;
+
+exports[`parse response Should parse an operationId without a controller 1`] = `
+Array [
+  Object {
+    "additionalProperties": undefined,
+    "fields": Array [
+      Array [
+        "resp1",
+        Object {
+          "id": "#/simple/test/get/200/Field_resp1",
+          "name": "RespOperation200_Field_resp1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get/200",
+    "name": "RespOperation200",
+    "required": Array [],
+    "type": "object",
+  },
+  Object {
+    "choices": Array [
+      Object {
+        "id": "/simple/test/choices/RespOperation200",
+        "name": "RespOperation_Ref_RespOperation200",
+        "ref": "#/simple/test/get/200",
+        "type": "ref",
+      },
+    ],
+    "id": "#/simple/test/get",
+    "name": "RespOperation",
+    "required": Array [],
+    "type": "anyOf",
+  },
+]
+`;

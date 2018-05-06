@@ -1,6 +1,7 @@
 import yaml from 'js-yaml';
 
 import parse from '../src/parser';
+import { DEFAULT_PARSER_CONFIG } from './constants';
 
 describe('parse', () => {
   describe('array', () => {
@@ -12,7 +13,7 @@ definitions:
     items:
       type: string
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
 
     it('Should parse arrays of arrays.', () => {
@@ -25,7 +26,7 @@ definitions:
       items:
         type: string
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
 
     it('Should parse arrays of objects.', () => {
@@ -39,7 +40,7 @@ definitions:
         field1:
           type: string
 `);
-      expect(parse(input).items).toMatchSnapshot();
+      expect(parse(input, DEFAULT_PARSER_CONFIG).items).toMatchSnapshot();
     });
   });
 });

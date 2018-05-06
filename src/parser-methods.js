@@ -1,6 +1,8 @@
 // @flow
 
 import { parseItemSchema } from './parser';
+import type { ParserConfig } from './parser';
+
 import type {
   Field,
   FieldMap,
@@ -15,10 +17,11 @@ const nameOperation = (
   prefix: string,
   path: string,
   method: string,
-  operationId: ?string
+  operationId: ?string,
+  controller: ?string,
 ): string => {
   if (operationId) {
-    return `${prefix}${upperCaseFirstLetter(operationId)}`;
+    return `${prefix}${upperCaseFirstLetter(controller ? controller : '')}${upperCaseFirstLetter(operationId)}`;
   }
 
   return `/${path}/${method}`
@@ -69,23 +72,51 @@ const parseMethodParameters = (
   method: string,
   methodSchema: Object,
   inheritedParameters: FieldMap,
-  ): ?SwaggerObject => {
+  controller: ?string,
+  splitBody: boolean,
+): {| main: ?SwaggerObject, body: ?Field |} => {
+  const result = {
+    main: undefined,
+    body: undefined,
+  };
+
   if (typeof methodSchema !== 'object') {
-    return null;
+    return result;
   }
 
   if (!Array.isArray(methodSchema.parameters)) {
-    return null;
+    return result;
   }
 
   const { parameters } = methodSchema;
 
-  const name = nameOperation('Rqst', path, method, methodSchema.operationId);
+  const [main, body] = parameters.reduce((accum, parameter) => {
+    // Don't need file parameters for now.
+    if (parameter.type === 'file') {
+      return accum;
+    }
 
-  const fieldsArray = parameters
-    .filter((parameter) => {
-      return (parameter.type !== 'file');
-    })
+    const [main, body] = accum;
+
+    if (!splitBody) {
+      return [main.concat(parameter), body];
+    }
+
+    if (parameter.in === 'body' && parameter.name === 'body') {
+      if (body) {
+        console.log('Multiple body parameters, using first one');
+        return [main, body];
+      }
+
+      return [main, parameter];
+    }
+
+    return [main.concat(parameter), body];
+  }, [[], undefined]);
+
+  const name = nameOperation('Rqst', path, method, methodSchema.operationId, controller);
+
+  const fieldsArray = main
     .map((parameter) => {
       const parameterName = `${name}_Field_${parameter.name}`;
       const parameterId = `#${path}/${method}/${parameter.name}`;
@@ -102,7 +133,7 @@ const parseMethodParameters = (
     ...fieldsArray
   ]);
 
-  return {
+  result.main = {
     // TODO: Figure out how to set this properly.
     additionalProperties: false,
     fields,
@@ -112,13 +143,22 @@ const parseMethodParameters = (
     required: [],
     type: 'object',
   };
+
+  if (body) {
+    const bodySchema = getParameterSchema(body);
+    const bodyName = `${name}Body`;
+    const bodyId = `#${path}/${method}/body`;
+    result.body = parseItemSchema(bodyName, bodyId, bodySchema);
+  }
+
+  return result;
 }
 
 const parseMethodResponses = (
   path: string,
   method: string,
   methodSchema: Object,
-  inheritedParameters: FieldMap,
+  controller: ?string,
 ): Array<Field> => {
   if (typeof methodSchema.responses !== 'object') {
     return [];
@@ -147,6 +187,7 @@ const parseMethodResponses = (
       // Append the method with the code so each response has a unique name.
       `${method}/${code}`,
       operationId,
+      controller,
     );
     const responseCodeId = `#${path}/${method}/${code}`;
 
@@ -162,8 +203,9 @@ const parseMethodResponses = (
     path,
     `${method}`,
     methodSchema.operationId,
+    controller,
   );
-  const responseId = `#/${path}/${method}`;
+  const responseId = `#${path}/${method}`;
 
   const choiceReferences = choices.map((choice) => {
     return {
@@ -187,17 +229,18 @@ const parseMethodResponses = (
 /**
  * Parse all of the parameters and responses for each request and create a schema for them.
  */
-const parseMethods = (schema: Object): Array<Field> => {
+const parseMethods = (schema: Object, config: ParserConfig): Array<Field> => {
   if (typeof schema.paths !== 'object') {
     return [];
   }
 
   const { paths } = schema;
+  const {
+    controllerKey,
+    splitBody,
+  } = config;
 
   const globalParameters = parseParametersArray('/parameters', 'parameters', schema.parameters);
-
-  // TODO Need to add global parameters
-  // TODO Need to add path level parameters
 
   return Object.keys(paths).reduce((accum1, path) => {
     if (typeof paths[path] !== 'object') {
@@ -205,8 +248,10 @@ const parseMethods = (schema: Object): Array<Field> => {
     }
 
     const definition = paths[path];
+    const pathController = (typeof definition[controllerKey] === 'string') ?
+      definition[controllerKey] : undefined;
 
-    const pathName = nameOperation('', path, '', null);
+    const pathName = nameOperation('', path, '', undefined);
 
     const inheritedParameters = {
       ...globalParameters,
@@ -220,9 +265,17 @@ const parseMethods = (schema: Object): Array<Field> => {
         return accum1;
       }
 
-      const methodField = parseMethodParameters(path, method, methodSchema, inheritedParameters);
-      const methodResponses = parseMethodResponses(path, method, methodSchema, {});
-      return accum2.concat(methodField || [], methodResponses);
+      const methodController = (typeof methodSchema[controllerKey] === 'string') ?
+        methodSchema[controllerKey] : pathController;
+
+      const {
+        main,
+        body,
+      } = parseMethodParameters(
+        path, method, methodSchema, inheritedParameters, methodController, splitBody,
+      );
+      const methodResponses = parseMethodResponses(path, method, methodSchema, methodController);
+      return accum2.concat(main || [], body || [], methodResponses);
     }, accum1);
 
   }, []);

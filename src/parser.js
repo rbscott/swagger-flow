@@ -20,7 +20,12 @@ import type {
 import parseArray from './parser-array';
 import parseComplexType from './parser-complex';
 import parseObject from './parser-object';
-import parseMethods from './parser-request';
+import parseMethods from './parser-methods';
+
+export type ParserConfig = {|
+  controllerKey: ?string,
+  splitBody: boolean,
+|};
 
 /**
  * Parse the schema for a primitive type. If the definition is not for a primitive type,
@@ -177,11 +182,12 @@ const parseComponents = (schema: Object): Array<Field> => {
  *   * [ ] paths/${url}/${method}/parameters
  *   * [ ] paths/${url}/${method}/responses
  */
-const parse = (schema: Object): Schema => {
+const parse = (schema: Object, config: ParserConfig): Schema => {
+
   const items = [
     ...parseSection('#/definitions', schema.definitions).concat(),
     ...parseComponents(schema),
-    ...parseMethods(schema),
+    ...parseMethods(schema, config),
   ];
 
   return {
