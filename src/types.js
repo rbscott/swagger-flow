@@ -68,6 +68,8 @@ export type Field = (
   SwaggerReference
 );
 
+export type FieldMap = ( {| [string]: Field |} |  {||} );
+
 export type Schema = {|
   items: Array<Field>,
 |};

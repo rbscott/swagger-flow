@@ -8,14 +8,14 @@ Array [
       Array [
         "sameParam",
         Object {
-          "id": "#/simple/test/sameParam",
-          "name": "TSimpleTestGet_Field_sameParam",
+          "id": "#/simple/test/get/sameParam",
+          "name": "RqstSimpleTestGet_Field_sameParam",
           "type": "integer",
         },
       ],
     ],
     "id": "#/simple/test/get",
-    "name": "TSimpleTestGet",
+    "name": "RqstSimpleTestGet",
     "required": Array [],
     "type": "object",
   },
@@ -30,14 +30,14 @@ Array [
       Array [
         "param1",
         Object {
-          "id": "#/simple/test/param1",
-          "name": "TSimpleTestGet_Field_param1",
+          "id": "#/simple/test/get/param1",
+          "name": "RqstSimpleTestGet_Field_param1",
           "type": "string",
         },
       ],
     ],
     "id": "#/simple/test/get",
-    "name": "TSimpleTestGet",
+    "name": "RqstSimpleTestGet",
     "required": Array [],
     "type": "object",
   },
@@ -60,14 +60,14 @@ Array [
       Array [
         "param1",
         Object {
-          "id": "#/simple/test/param1",
-          "name": "TSimpleTestGet_Field_param1",
+          "id": "#/simple/test/get/param1",
+          "name": "RqstSimpleTestGet_Field_param1",
           "type": "string",
         },
       ],
     ],
     "id": "#/simple/test/get",
-    "name": "TSimpleTestGet",
+    "name": "RqstSimpleTestGet",
     "required": Array [],
     "type": "object",
   },
@@ -82,22 +82,22 @@ Array [
       Array [
         "param1",
         Object {
-          "id": "#/simple/test/param1",
-          "name": "TSimpleTestGet_Field_param1",
+          "id": "#/simple/test/get/param1",
+          "name": "RqstSimpleTestGet_Field_param1",
           "type": "string",
         },
       ],
       Array [
         "param2",
         Object {
-          "id": "#/simple/test/param2",
-          "name": "TSimpleTestGet_Field_param2",
+          "id": "#/simple/test/get/param2",
+          "name": "RqstSimpleTestGet_Field_param2",
           "type": "boolean",
         },
       ],
     ],
     "id": "#/simple/test/get",
-    "name": "TSimpleTestGet",
+    "name": "RqstSimpleTestGet",
     "required": Array [],
     "type": "object",
   },
@@ -113,23 +113,59 @@ Array [
         "pathParam1",
         Object {
           "id": "#/simple/test/pathParam1",
-          "name": "TSimpleTest/_Field_pathParam1",
+          "name": "SimpleTest/_Field_pathParam1",
           "type": "string",
         },
       ],
       Array [
         "param1",
         Object {
-          "id": "#/simple/test/param1",
-          "name": "TSimpleTestGet_Field_param1",
+          "id": "#/simple/test/get/param1",
+          "name": "RqstSimpleTestGet_Field_param1",
           "type": "string",
         },
       ],
     ],
     "id": "#/simple/test/get",
-    "name": "TSimpleTestGet",
+    "name": "RqstSimpleTestGet",
     "required": Array [],
     "type": "object",
+  },
+]
+`;
+
+exports[`parse response Should parse a basic response 1`] = `
+Array [
+  Object {
+    "additionalProperties": undefined,
+    "fields": Array [
+      Array [
+        "resp1",
+        Object {
+          "id": "#/simple/test/get/200/Field_resp1",
+          "name": "RespSimpleTestGet200_Field_resp1",
+          "type": "string",
+        },
+      ],
+    ],
+    "id": "#/simple/test/get/200",
+    "name": "RespSimpleTestGet200",
+    "required": Array [],
+    "type": "object",
+  },
+  Object {
+    "choices": Array [
+      Object {
+        "id": "/simple/test/choices/RespSimpleTestGet200",
+        "name": "RespSimpleTestGet_Ref_RespSimpleTestGet200",
+        "ref": "#/simple/test/get/200",
+        "type": "ref",
+      },
+    ],
+    "id": "#//simple/test/get",
+    "name": "RespSimpleTestGet",
+    "required": Array [],
+    "type": "anyOf",
   },
 ]
 `;

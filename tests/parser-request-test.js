@@ -94,4 +94,23 @@ paths:
     });
 
   });
+
+  describe('response', () => {
+    it('Should parse a basic response', () => {
+      const input = yaml.safeLoad(`
+paths:
+  /simple/test:
+    get:
+      responses:
+        200:
+          schema:
+            type: object
+            properties:
+              resp1:
+                type: string
+`);
+      expect(parse(input).items).toMatchSnapshot();
+    });
+  });
+
 });

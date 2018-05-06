@@ -20,7 +20,7 @@ import type {
 import parseArray from './parser-array';
 import parseComplexType from './parser-complex';
 import parseObject from './parser-object';
-import parseParameters from './parser-request';
+import parseMethods from './parser-request';
 
 /**
  * Parse the schema for a primitive type. If the definition is not for a primitive type,
@@ -98,10 +98,17 @@ export const parseItemSchema = (name: string, id: string, itemSchema: Object): F
   const complexType = parseComplexType(name, id, itemSchema);
   if (complexType) return complexType;
 
+  // Swagger Objects typically don't have types, if they specify a properties object
+  // they should be ok.
+  const swaggerObject = parseObject(name, id, itemSchema);
+  if (swaggerObject) return swaggerObject;
+
+
   // Type field is required and must be a string.
   // https://tools.ietf.org/html/draft-wright-json-schema-validation-00#section-5.21
   // https://swagger.io/specification/#schemaObject
   if (typeof type !== 'string') {
+    debugger;
     throw new Error(`Schema item: ${name}, ${id} is missing a type`);
   }
 
@@ -113,9 +120,6 @@ export const parseItemSchema = (name: string, id: string, itemSchema: Object): F
 
   const swaggerArray = parseArray(name, id, itemSchema);
   if (swaggerArray) return swaggerArray;
-
-  const swaggerObject = parseObject(name, id, itemSchema);
-  if (swaggerObject) return swaggerObject;
 
   throw new Error('Not implemented');
 };
@@ -177,7 +181,7 @@ const parse = (schema: Object): Schema => {
   const items = [
     ...parseSection('#/definitions', schema.definitions).concat(),
     ...parseComponents(schema),
-    ...parseParameters(schema),
+    ...parseMethods(schema),
   ];
 
   return {

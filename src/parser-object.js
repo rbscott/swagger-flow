@@ -13,7 +13,7 @@ import { parseItemSchema } from './parser';
  * return null.
  */
 const parseObject = (name: string, id: string, itemSchema: Object): ?SwaggerObject => {
-  // This will treat anything that has properties set as an object.
+  // Treat anything that has properties set (or a type object) as an object.
   if (itemSchema.type !== 'object' && typeof itemSchema.properties !== 'object') {
     return null;
   }

@@ -4,8 +4,7 @@
   "description": "Tool to generate Flow Type Definitions from Swagger Files",
   "main": "./dist/index.js",
   "dependencies": {
-    "js-yaml": "^3.11.0",
-    "title-case": "^2.1.1"
+    "js-yaml": "^3.11.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
