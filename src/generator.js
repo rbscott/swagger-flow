@@ -53,14 +53,11 @@ export const generateDeclaration = (
     }
 
     // Assuming that complex types are for objects, this will not work for other types.
-    const declarations = choices.map((choice) => {
-      return `...${generateDeclaration(choice, lookupTable, config)}`;
+    return choices.map((choice) => {
+      return generateDeclaration(choice, lookupTable, config);
     })
     .sort()
-    .join(', ');
-
-    // Not sure if exact should be used here?
-    return `{ ${declarations} }`;
+    .join(' & ');
 
   // anyOf and oneOf are slightlty different, but there doesn't appear to be a way to model
   // oneOf in flow. Using the same logic for both.
@@ -78,7 +75,7 @@ export const generateDeclaration = (
     .sort()
     .join(' | ');
 
-    return `( ${declarations} )`;
+    return `(${declarations})`;
 
   } else if (field.type === 'enum') {
     const values = field.values
@@ -112,8 +109,12 @@ export const generateDeclaration = (
     .sort()
     .join(', ');
 
-    return `{${exact} ${fields} ${exact}}`;
 
+    if (fields.length === 0) {
+      return `{${exact}${exact}}`;
+    }
+
+    return `{${exact} ${fields} ${exact}}`;
   }
 
   return '';
@@ -139,7 +140,7 @@ const generateFlowTypes = (schema: Schema, config: GeneratorConfig): string => {
     const declaration = generateDeclaration(item, lookupTable, config);
 
     return accum.concat(`export type ${item.name} = ${declaration};`);
-  }, [])
+  }, ['// @flow'])
   .join('\n\n');
 };
 

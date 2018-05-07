@@ -28,6 +28,7 @@
   },
   "scripts": {
     "build:watch": "rm -rf dist/ && babel --source-maps -w -d dist/ -qD --ignore __mocks__  src/",
+    "build": "rm -rf dist/ && babel --source-maps -d dist/ -qD --ignore __mocks__  src/",
     "lint": "eslint . --ext js,json",
     "lintfix": "eslint . --fix",
     "test:jest": "jest"
